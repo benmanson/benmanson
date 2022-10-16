@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# ==============================================================================
+# file:         init-repo                                                     
+# description:  Automatic repo configuration script to enhance/replace git init
+# author:       Ben Manson                                                    
+# date:         2022-10-16                                                    
+# =============================================================================
+
+
+if ! [ -d "${PWD}/.git" ]; then
+    read -p "This is not a git repo - would you like to make it one? [y/N] " result
+    result=${result:-n}
+
+    case $result in
+        [Yy]* ) printf "\n\nInitializing git repo\n" && git init;;
+        [Nn]* ) printf "\n\nExiting..." && exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+    printf "\n\n"
+fi
+
+echo "Downloading default .editorconfig file and placing in project root..."
+CURL_COMMAND=\
+'curl -SLo $PWD/.editorconfig "https://raw.githubusercontent.com/benmanson/benmanson/main/conf/common/.editorconfig"'
+
+if [ -f "${PWD}/.editorconfig" ]; then
+    read -p ".editorconfig already exists - overwrite? [y/N] " result
+    result=${result:-n}
+
+    case $result in
+        [Yy]* ) printf "\n" && eval $CURL_COMMAND;;
+        [Nn]* ) printf "\nSkipping...\n";;
+        * ) echo "Please answer yes or no.";;
+    esac
+else
+    eval $CURL_COMMAND
+fi
