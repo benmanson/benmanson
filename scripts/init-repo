@@ -5,7 +5,7 @@
 # description:  Automatic repo configuration script to enhance/replace git init
 # author:       Ben Manson
 # date:         2022-10-16
-# =============================================================================
+# ==============================================================================
 
 
 if ! [ -d "${PWD}/.git" ]; then
