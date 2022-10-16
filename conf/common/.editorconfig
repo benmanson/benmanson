@@ -7,7 +7,7 @@ indent_style = space
 trim_trailing_whitespace = true
 
 # Scripting/programming language rules
-[*.{py,java,hpp,h,c,cpp,go,js}]
+[*.{py,java,c,h,cpp,cc,hpp,go}]
 insert_final_newline = true
 indent_size = 4
 
@@ -16,5 +16,5 @@ indent_size = 4
 insert_final_newline = true
 
 # Web language rules
-[*.{html,yaml,yml,json,css,md}]
+[*.{html,yaml,yml,json,css,md,js,jsx}]
 indent_size = 2
