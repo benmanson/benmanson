@@ -5,15 +5,19 @@
 # date:         2022-10-16
 # ==============================================================================
 
+# I specifically selected languages from the gitignore repo that I already write
+# or would like to learn. This list include: C, C++, Java, Python, Go,
+# and Node.js. At the top of the file, I've added in some other extras that I 
+# often like to exclude.
 
 # =================
 # My additions
 # =================
 
-# Binaries
+# MacOS specific binaries
 .DS_Store
 
-# Preferred Docker data directory (for mounting)
+# My preferred Docker data directory (for mounting)
 docker/
 
 
