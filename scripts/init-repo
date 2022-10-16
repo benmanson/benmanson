@@ -1,10 +1,10 @@
 #!/bin/sh
 #
 # ==============================================================================
-# file:         init-repo                                                     
+# file:         init-repo
 # description:  Automatic repo configuration script to enhance/replace git init
-# author:       Ben Manson                                                    
-# date:         2022-10-16                                                    
+# author:       Ben Manson
+# date:         2022-10-16
 # =============================================================================
 
 
@@ -36,3 +36,22 @@ if [ -f "${PWD}/.editorconfig" ]; then
 else
     eval $CURL_COMMAND
 fi
+printf "\n\n"
+
+echo "Downloading default .gitignore file and placing in project root..."
+CURL_COMMAND=\
+'curl -SLo $PWD/.gitignore "https://raw.githubusercontent.com/benmanson/benmanson/main/.gitignore"'
+
+if [ -f "${PWD}/.gitignore" ]; then
+    read -p ".gitignore already exists - overwrite? [y/N] " result
+    result=${result:-n}
+
+    case $result in
+        [Yy]* ) printf "\n" && eval $CURL_COMMAND;;
+        [Nn]* ) printf "\nSkipping...\n";;
+        * ) echo "Please answer yes or no.";;
+    esac
+else
+    eval $CURL_COMMAND
+fi
+printf "\n\n"
