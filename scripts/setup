@@ -1,0 +1,67 @@
+#!/bin/sh
+#
+# ==============================================================================
+# file:         setup
+# description:  Automatic setup script for Unix based systems
+# author:       Ben Manson
+# date:         2022-10-22
+# ==============================================================================
+
+set -e
+
+cp -R $(dirname $PWD)/ben/. $HOME
+rm -rf $HOME/benmanson
+
+
+# install homebrew on mac
+
+PLATFORM="Linux-x86_64"
+
+if [ $(uname) = "Darwin" ]
+then
+    PLATFORM="MacOSX-arm64"
+    if ! command -v brew &> /dev/null
+    then
+        echo "Installing homebrew..."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+fi
+
+
+# install conda
+
+echo "Installing conda..."
+
+curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$PLATFORM.sh"
+sh Miniforge3-$PLATFORM.sh -b -p $HOME/.local/opt/miniforge3
+rm Miniforge3-$PLATFORM.sh
+
+
+# Install and setup zsh with plugins
+
+# Try different package managers for Linux distributions that I use
+
+if ! command -v zsh &> /dev/null
+then
+    echo "Installing zsh..."
+    apt install -y zsh || yum install -y zsh || pacman -Sy zsh
+    chsh -s zsh
+fi
+
+echo "Installing oh-my-zsh..."
+
+ZSH="$HOME/.local/opt/.oh-my-zsh"
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+
+echo "Installing zsh-autosuggestions..."
+git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $ZSH/plugins/zsh-autosuggestions
+
+echo "Installing zsh-syntax-highlighting..."
+git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/plugins/zsh-syntax-highlighting
+
+echo "Installing powerlevel10k..."
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH/themes/powerlevel10k
+
+echo "Restart zsh to see changes"
+exit
