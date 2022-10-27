@@ -1,0 +1,7 @@
+[user]
+	name = benmanson
+	email = ben@benmanson.uk
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
