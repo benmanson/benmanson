@@ -17,6 +17,11 @@
 # MacOS specific binaries
 .DS_Store
 
+# Other binaries/data files
+*.db
+*.sql
+*.sqlite3
+
 # My preferred Docker data directory (for mounting)
 docker/
 
