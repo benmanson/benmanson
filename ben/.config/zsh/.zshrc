@@ -50,6 +50,7 @@ alias sz="source $ZDOTDIR/.zshrc"
 
 # conda
 alias ca="conda activate"
+alias cl="conda info --envs"
 alias qe="conda deactivate"
 
 # utils
