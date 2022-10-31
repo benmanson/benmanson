@@ -32,7 +32,7 @@ fi
 
 echo "Installing conda..."
 
-curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$PLATFORM.sh"
+curl -L -O 'https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$PLATFORM.sh'
 sh Miniforge3-$PLATFORM.sh -b -p $HOME/.local/opt/miniforge3
 rm Miniforge3-$PLATFORM.sh
 
@@ -63,5 +63,4 @@ git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZS
 echo "Installing powerlevel10k..."
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH/themes/powerlevel10k
 
-echo "Restart zsh to see changes"
-exit
+echo "Restart zsh to see changes!"
