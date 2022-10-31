@@ -6,8 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Add brew to PATH
-PATH="/opt/homebrew/bin:$PATH"
+# Add brew and openjdk to PATH
+PATH="/opt/homebrew/opt/openjdk@17/bin:/opt/homebrew/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.local/opt/.oh-my-zsh"
