@@ -6,8 +6,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Add brew and openjdk to PATH
-PATH="/opt/homebrew/opt/openjdk@17/bin:/opt/homebrew/bin:$PATH"
+# Add brew and openjdk to PATH on MacOS only
+if [ $(uname) = "Darwin" ]; then
+  PATH="/opt/homebrew/opt/openjdk@17/bin:/opt/homebrew/bin:$PATH"
+
+  # Start tmux
+  if [ -z "$TMUX"  ]; then                                                                                            
+    exec /opt/homebrew/bin/tmux new-session -A -s workspace                                                       
+  fi
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.local/opt/.oh-my-zsh"
@@ -18,6 +25,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
   git
+  tmux
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
