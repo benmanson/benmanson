@@ -31,15 +31,15 @@ def get_types(files):
 
 
 def main(path):
-    _, files = run_fast_scandir(f"{path}")
+    _, files = run_fast_scandir(path)
     types = get_types(files)
 
     print(f"Found file types: {types}")
 
     args = input("Enter file types for deletion (space separated): ").split()
-    answer = input(f"Are you sure that you want to delete all {args} files? (This action cannot be undone) [yes/no]\n")
+    answer = input(f"Are you sure that you want to delete all {args} files? (This action cannot be undone) [y/N]\n")
 
-    if answer.lower() == "yes":
+    if answer.lower().strip().startswith('y'):
         for arg in args:
             if arg in types:
                 print(f"Deleting all {arg} files")
