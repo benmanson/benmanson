@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+
+import os
+import glob
+
+# Modified from https://stackoverflow.com/questions/18394147/how-to-do-a-recursive-sub-folder-search-and-return-files-in-a-list
+def run_fast_scandir(dir):
+    subfolders, files = [], []
+
+    for f in os.scandir(dir):
+        if f.is_dir():
+            subfolders.append(f.path)
+        if f.is_file():
+            files.append(f.path)
+
+    for dir in list(subfolders):
+        sf, f = run_fast_scandir(dir)
+        subfolders.extend(sf)
+        files.extend(f)
+    return subfolders, files
+
+def get_types(files):
+    types = set()
+    for file in files:
+        try:
+            ext = file.split('/')[-1].split('.')[-1]
+            types.add(ext.strip())
+        except:
+            continue
+    return types
+
+
+def main(path):
+    _, files = run_fast_scandir(f"{path}")
+    types = get_types(files)
+
+    print(f"Found file types: {types}")
+
+    args = input("Enter file types for deletion (space separated): ").split()
+    answer = input(f"Are you sure that you want to delete all {args} files? (This action cannot be undone) [yes/no]\n")
+
+    if answer.lower() == "yes":
+        for arg in args:
+            if arg in types:
+                print(f"Deleting all {arg} files")
+                for file in files:
+                    if file.split('/')[-1].split('.')[-1] == arg:
+                        os.remove(file)
+            else:
+                print(f"No {arg} files found")
+
+
+if __name__=="__main__":
+    path = input("Please enter the absolute path you'd like to scan: ").split()[0]
+    main(path)
