@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import os
-import glob
 
 # Modified from https://stackoverflow.com/questions/18394147/how-to-do-a-recursive-sub-folder-search-and-return-files-in-a-list
 def run_fast_scandir(dir):
