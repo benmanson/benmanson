@@ -25,6 +25,8 @@ then
         echo "Installing homebrew..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
+
+    brew install tree openjdk@17 node cmake corepack awscli
 fi
 
 
