@@ -11,6 +11,9 @@ if [ $(uname) = "Darwin" ]; then
   PATH="/opt/homebrew/opt/openjdk@17/bin:/opt/homebrew/bin:$PATH"
 fi
 
+# Add mouse support to tmux
+echo "set -g mouse on" > $HOME/.tmux.conf
+
 # Start tmux
 if [ -z "$TMUX"  ]; then
   # Don't open tmux in vscode (I prefer vscode's builtin terminal manager)
