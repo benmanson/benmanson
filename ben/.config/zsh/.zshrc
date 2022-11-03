@@ -9,10 +9,13 @@ fi
 # Add brew and openjdk to PATH on MacOS only
 if [ $(uname) = "Darwin" ]; then
   PATH="/opt/homebrew/opt/openjdk@17/bin:/opt/homebrew/bin:$PATH"
+fi
 
-  # Start tmux
-  if [ -z "$TMUX"  ]; then                                                                                            
-    exec /opt/homebrew/bin/tmux new-session -A -s workspace                                                       
+# Start tmux
+if [ -z "$TMUX"  ]; then
+  # Don't open tmux in vscode (I prefer vscode's builtin terminal manager)
+  if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+    exec /opt/homebrew/bin/tmux new-session -A -s workspace
   fi
 fi
 
@@ -36,13 +39,13 @@ source "$ZSH/oh-my-zsh.sh"
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('$HOME/.local/opt/conda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$__conda_setup"
 else
-    if [ -f "$HOME/.local/opt/conda/etc/profile.d/conda.sh" ]; then
-        . "$HOME/.local/opt/conda/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/.local/opt/conda/bin:$PATH"
-    fi
+  if [ -f "$HOME/.local/opt/conda/etc/profile.d/conda.sh" ]; then
+    . "$HOME/.local/opt/conda/etc/profile.d/conda.sh"
+  else
+    export PATH="$HOME/.local/opt/conda/bin:$PATH"
+  fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
