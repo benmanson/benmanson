@@ -26,7 +26,7 @@ then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
-    brew install tree openjdk@17 node cmake corepack awscli
+    brew install tree openjdk@17 node cmake corepack awscli ruby-build rbenv
 fi
 
 
