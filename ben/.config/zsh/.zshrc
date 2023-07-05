@@ -75,6 +75,4 @@ alias gc="git commit -m"
 alias gp="git push"
 alias gpu="git pull"
 
-eval "$(rbenv init - zsh)"
-
 ca
