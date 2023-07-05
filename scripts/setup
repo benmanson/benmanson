@@ -34,8 +34,8 @@ fi
 
 echo "Installing conda..."
 
-curl -L -O 'https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$PLATFORM.sh'
-sh Miniforge3-$PLATFORM.sh -b -p $HOME/.local/opt/miniforge3
+curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$PLATFORM.sh"
+sh Miniforge3-$PLATFORM.sh -b -p $HOME/.local/opt/conda
 rm Miniforge3-$PLATFORM.sh
 
 
