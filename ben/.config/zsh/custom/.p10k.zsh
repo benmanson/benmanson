@@ -1159,7 +1159,7 @@
   typeset -g POWERLEVEL9K_RVM_FOREGROUND=0
   typeset -g POWERLEVEL9K_RVM_BACKGROUND=240
   # Don't show @gemset at the end.
-  typeset -g POWERLEVEL9K_RVM_SHOW_GEMSET=false
+  typeset -g POWERLEVEL9K_RVM_SHOW_GEMSET=true
   # Don't show ruby- at the front.
   typeset -g POWERLEVEL9K_RVM_SHOW_PREFIX=false
   # Custom icon.
